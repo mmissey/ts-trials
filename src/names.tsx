@@ -1,12 +1,18 @@
 import * as React from 'react';
-import withNames from './withNames';
+import withNames, { InjectedProps } from './withNames';
 
-class NamesContainer extends React.Component<{names: string[]}> {
+interface INameProps {
+  ages: number[]
+}
+class NamesContainer extends React.Component<
+INameProps &
+InjectedProps
+> {
   public render(){
     return (
       <div>
       {
-        this.props.names.map((name) => {
+        this.props.names && this.props.names.map((name) => {
           return <div key={name}>{name}</div>;
         })
       }
@@ -14,4 +20,4 @@ class NamesContainer extends React.Component<{names: string[]}> {
   }
 }
 
-export default withNames(NamesContainer);
+export default withNames<INameProps>(NamesContainer);

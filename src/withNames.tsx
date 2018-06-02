@@ -1,7 +1,7 @@
 import { connect, Dispatch } from 'react-redux';
 const mapStateToProps = (store: any) => ({
-  names: store.names,
-});
+  names: store as string[],
+})
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchNames() { 
@@ -14,11 +14,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = ReturnType<typeof mapDispatchToProps>;
+export type InjectedProps = StateProps & DispatchProps;
 
-export const withNames = <OwnProps extends any>(Cmp: React.ComponentType<OwnProps>) =>
+export default <OwnProps extends any>(Cmp: React.ComponentType<OwnProps>) =>
   connect<StateProps, DispatchProps, OwnProps>(
     mapStateToProps,
     mapDispatchToProps
   )(Cmp);
-
-export default withNames;
