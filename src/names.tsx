@@ -1,12 +1,13 @@
 import * as React from 'react';
-import withNames, { InjectedProps } from './withNames';
-
+import withAges, { WithAgesProps } from './withAges'; 
+import withNames, { WithNamesProps } from './withNames';
 interface INameProps {
-  ages: number[]
+  parents?: string[]
 }
 class NamesContainer extends React.Component<
 INameProps &
-InjectedProps
+WithNamesProps &
+WithAgesProps
 > {
   public render(){
     return (
@@ -20,4 +21,7 @@ InjectedProps
   }
 }
 
-export default withNames<INameProps>(NamesContainer);
+const plusNames = withNames<INameProps>(NamesContainer);
+const plusAges = withAges(plusNames);
+
+export default plusAges;

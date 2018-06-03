@@ -1,12 +1,12 @@
 import { connect, Dispatch } from 'react-redux';
 const mapStateToProps = (store: any) => ({
-  names: store.names as string[],
+  names: store.ages as number[],
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchNames() { 
     dispatch({
-      type: 'names.fetch'
+      type: 'ages.fetch'
     });
   },
 });
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = ReturnType<typeof mapDispatchToProps>;
-export type WithNamesProps = StateProps & DispatchProps;
+export type WithAgesProps = StateProps & DispatchProps;
 
 export default <OwnProps extends any>(Cmp: React.ComponentType<OwnProps>) =>
   connect<StateProps, DispatchProps, OwnProps>(

@@ -1,6 +1,11 @@
 import { Action, createStore } from 'redux';
 
-const reducer = (state = ['bill', 'steve', 'ted'], action: Action) => {
+const initialState = {
+  ages: [1,2,3,4,5],
+  names: ['bill', 'steve', 'ted'],
+}
+
+const reducer = (state = initialState, action: Action) => {
   return state;
 };
 
